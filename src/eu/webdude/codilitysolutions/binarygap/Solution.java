@@ -1,4 +1,4 @@
-package eu.webdude.codilitysolutions;
+package eu.webdude.codilitysolutions.binarygap;
 
 public class Solution {
 
