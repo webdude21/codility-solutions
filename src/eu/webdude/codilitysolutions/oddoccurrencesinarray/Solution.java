@@ -22,7 +22,6 @@ public class Solution {
         return occurrenceMap
                 .entrySet()
                 .stream()
-                .peek(e -> System.out.printf("%d -> %d%n", e.getKey(), e.getValue()))
                 .filter(e -> e.getValue() == 1)
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new)
