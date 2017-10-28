@@ -1,8 +1,5 @@
 package eu.webdude.codilitysolutions.oddoccurrencesinarray;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Solution {
 
     public static void main(String[] args) {
@@ -11,20 +8,12 @@ public class Solution {
     }
 
     public int solution(int[] input) {
-        Map<Integer, Integer> occurrenceMap = new HashMap<>();
+        int result = input[0];
 
-
-        for (int anInput : input) {
-            occurrenceMap.putIfAbsent(anInput, 0);
-            occurrenceMap.put(anInput, occurrenceMap.get(anInput) + 1);
+        for (int i = 1; i < input.length; i++) {
+            result ^= input[i];
         }
 
-        return occurrenceMap
-                .entrySet()
-                .stream()
-                .filter(e -> e.getValue() == 1)
-                .findFirst()
-                .orElseThrow(IllegalArgumentException::new)
-                .getKey();
+        return result;
     }
 }
