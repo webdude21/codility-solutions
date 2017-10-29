@@ -9,7 +9,8 @@ public class Solution {
 
     public int solution(int[] input) {
         long n = input.length + 1;
-        long result = n * (n + 1) / 2;
+        final long expectedProggressionSum = n * (n + 1) / 2;
+        long result = expectedProggressionSum;
 
         for (int i : input) {
             result -= i;
