@@ -11,16 +11,20 @@ public class Solution {
 
     public int[] solution(int countersCount, int[] operations) {
         int[] counters = new int[countersCount];
+        int currentMax = 0;
 
         for (int operation : operations) {
             if (isIncrease(countersCount, operation)) {
                 counters[operation - 1]++;
+                if (currentMax < counters[operation - 1]){
+                    currentMax = counters[operation - 1];
+                }
+                continue;
             }
 
             if (isMaxCounter(countersCount, operation)) {
-                int max = Arrays.stream(counters).max().orElse(0);
                 for (int i = 0; i < counters.length; i++) {
-                    counters[i] = max;
+                    counters[i] = currentMax;
                 }
             }
         }
