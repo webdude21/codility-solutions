@@ -37,7 +37,6 @@ public class Solution {
         return counters;
     }
 
-
     private boolean isMaxCounter(int countersCount, int operation) {
         return operation == countersCount + 1;
     }
