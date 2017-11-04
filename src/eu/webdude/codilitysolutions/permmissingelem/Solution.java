@@ -16,6 +16,6 @@ public class Solution {
             result -= i;
         }
 
-        return (int)result;
+        return (int) result;
     }
 }
