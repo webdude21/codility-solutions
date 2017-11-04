@@ -12,29 +12,31 @@ public class Solution {
     public int[] solution(int countersCount, int[] operations) {
         int[] counters = new int[countersCount];
         int currentMax = 0;
+        int lastUpdate = 0;
 
         for (int operation : operations) {
-            if (isIncrease(countersCount, operation)) {
-                counters[operation - 1]++;
-                if (currentMax < counters[operation - 1]){
-                    currentMax = counters[operation - 1];
+            if (isMaxCounter(countersCount, operation)) {
+                lastUpdate = currentMax;
+            } else {
+                int position = operation - 1;
+                if (counters[position] < lastUpdate) {
+                    counters[position] = lastUpdate + 1;
+                } else {
+                    counters[position]++;
                 }
-                continue;
+
+                currentMax = Math.max(currentMax, counters[position]);
             }
 
-            if (isMaxCounter(countersCount, operation)) {
-                for (int i = 0; i < counters.length; i++) {
-                    counters[i] = currentMax;
-                }
-            }
+        }
+
+        for (int position = 0; position < countersCount; position++) {
+            counters[position] = Math.max(counters[position], lastUpdate);
         }
 
         return counters;
     }
 
-    private boolean isIncrease(int countersCount, int operation) {
-        return operation >= 1 && operation <= countersCount;
-    }
 
     private boolean isMaxCounter(int countersCount, int operation) {
         return operation == countersCount + 1;
