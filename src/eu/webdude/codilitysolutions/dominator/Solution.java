@@ -11,18 +11,31 @@ public class Solution {
     }
 
     public int solution(int[] input) {
-        int result = -1;
+        if (input.length == 1){
+            return 0;
+        }
 
         Arrays.sort(input);
 
         int midPoint = input.length / 2;
 
-        for (int i = 0; i < midPoint; i++) {
-            if (input[i] == input[midPoint + i]) {
+        int currentCount = 0;
+        int currentElement = Integer.MIN_VALUE;
+
+        for (int i = 0, inputLength = input.length; i < inputLength; i++) {
+            int current = input[i];
+            if (current != currentElement) {
+                currentElement = current;
+                currentCount = 0;
+            }
+
+            currentCount++;
+
+            if (currentCount > midPoint) {
                 return i;
             }
         }
 
-        return result;
+        return -1;
     }
 }
