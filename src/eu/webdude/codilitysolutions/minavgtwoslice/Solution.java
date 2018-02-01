@@ -14,21 +14,33 @@ public class Solution {
         double minValue = 100_000_000;
 
         for (int i = 0; i < input.length - 1; i++) {
-            double twoStep = (input[i] + input[i + 1]) / 2.0;
-            if (twoStep < minValue) {
+            double sliceOfTwo = averageSlice(input, i, i + 1);
+            if (sliceOfTwo < minValue) {
                 minIndex = i;
-                minValue = twoStep;
+                minValue = sliceOfTwo;
             }
 
             if (i + 1 < input.length - 1) {
-                double treeStep = (input[i] + input[i + 1] + input[i + 2]) / 3.0;
-                if (treeStep < minValue){
+                double sliceOfThree = averageSlice(input, i, i + 2);
+                if (sliceOfThree < minValue) {
                     minIndex = i;
-                    minValue = treeStep;
+                    minValue = sliceOfThree;
                 }
             }
         }
 
         return minIndex;
+    }
+
+    private double averageSlice(int[] input, int start, int end) {
+        int result = 0;
+
+        double count = end - start + 1;
+
+        for (int i = start; i <= end; i++) {
+            result += input[i];
+        }
+
+        return result / count;
     }
 }
