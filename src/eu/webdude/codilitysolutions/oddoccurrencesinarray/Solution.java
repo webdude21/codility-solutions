@@ -8,10 +8,10 @@ public class Solution {
     }
 
     public int solution(int[] input) {
-        int result = input[0];
+        int result = 0;
 
-        for (int i = 1; i < input.length; i++) {
-            result ^= input[i];
+        for (int anInput : input) {
+            result ^= anInput;
         }
 
         return result;
