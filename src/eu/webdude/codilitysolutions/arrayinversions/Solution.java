@@ -9,12 +9,12 @@ public class Solution {
   static int solution(int[] testInput) {
     inversions = 0;
 
-    int[] mergeSort = sort(testInput);
+    sort(testInput);
 
-    return inversions;
+    return inversions >= 1_000_000_000 ? -1 : inversions;
   }
 
-  public static int[] sort(int[] input) {
+  private static int[] sort(int[] input) {
     int length = input.length;
 
     if (length <= 1) {
@@ -28,22 +28,20 @@ public class Solution {
   }
 
   private static int[] merge(int[] left, int[] right) {
-    int[] result = new int[left.length + right.length];
+    int combinedLength = left.length + right.length;
+    int[] result = new int[combinedLength];
     int leftIndex = 0;
     int rightIndex = 0;
 
     for (int i = 0; i < result.length; i++) {
-      boolean leftInRange = leftIndex < left.length;
-      boolean rightInRange = rightIndex < right.length;
-
-      if (leftInRange && rightInRange) {
-        if (left[leftIndex] < right[rightIndex]) {
+      if (leftIndex < left.length && rightIndex < right.length) {
+        if (left[leftIndex] <= right[rightIndex]) {
           result[i] = left[leftIndex++];
         } else {
           result[i] = right[rightIndex++];
-          inversions += (left.length - i);
+          inversions += (left.length - leftIndex);
         }
-      } else if (leftInRange) {
+      } else if (leftIndex < left.length) {
         result[i] = left[leftIndex++];
       } else {
         result[i] = right[rightIndex++];
