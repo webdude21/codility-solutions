@@ -35,6 +35,16 @@ class SolutionTest {
     }
   }
 
+  static class Task03Provider implements ArgumentsProvider {
+
+    @Override
+    public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
+      return Stream.of(
+        Arguments.of(3, 4, 5)
+        );
+    }
+  }
+
   @ParameterizedTest
   @ArgumentsSource(Task01Provider.class)
   void task01(int expected, int[] testArray, int x) {
@@ -51,5 +61,11 @@ class SolutionTest {
   @ArgumentsSource(Task02Provider.class)
   void convertBinaryToDecimal(int[] expected, int[] input, int expectedDecimal) {
     Assertions.assertEquals(expectedDecimal, Solution.negativeBinaryToDecimal(input));
+  }
+
+  @ParameterizedTest
+  @ArgumentsSource(Task03Provider.class)
+  void task03(int expected, int a, int b) {
+    Assertions.assertEquals(expected, Solution.task03(a, b));
   }
 }

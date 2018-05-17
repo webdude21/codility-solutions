@@ -70,4 +70,19 @@ public class Solution {
 
     return result;
   }
+
+  static int task03(int a, int b) {
+    var coordsSum = a + b;
+    var result = -1;
+
+    if (coordsSum % 3 == 0) {
+      result = coordsSum / 3;
+    }
+
+    if (result >= 100_000_000) {
+      result = -2;
+    }
+
+    return result;
+  }
 }
