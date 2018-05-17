@@ -38,10 +38,14 @@ class SolutionTest {
   static class Task03Provider implements ArgumentsProvider {
 
     @Override
-    public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) throws Exception {
+    public Stream<? extends Arguments> provideArguments(ExtensionContext extensionContext) {
       return Stream.of(
-        Arguments.of(3, 4, 5)
-        );
+        Arguments.of(3, 4, 5),
+        Arguments.of(2, -4, 2),
+        Arguments.of(4, -6, -4),
+        Arguments.of(2, -1, -1),
+        Arguments.of(3, 1, 6)
+      );
     }
   }
 
@@ -65,7 +69,7 @@ class SolutionTest {
 
   @ParameterizedTest
   @ArgumentsSource(Task03Provider.class)
-  void task03(int expected, int a, int b) {
-    Assertions.assertEquals(expected, Solution.task03(a, b));
+  void task03(int expected, int x, int y) {
+    Assertions.assertEquals(expected, Solution.task03(x, y));
   }
 }

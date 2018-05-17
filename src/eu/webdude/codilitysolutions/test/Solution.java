@@ -71,18 +71,28 @@ public class Solution {
     return result;
   }
 
-  static int task03(int a, int b) {
-    var coordsSum = a + b;
-    var result = -1;
+  static int task03(int x, int y) {
+    double A = Math.abs(x);
+    double B = Math.abs(y);
 
-    if (coordsSum % 3 == 0) {
-      result = coordsSum / 3;
+    if (A < B) {
+      task03((int) B, (int) A);
     }
 
-    if (result >= 100_000_000) {
-      result = -2;
+    // 2 corner cases
+    if (A == 1 && B == 0) {
+      return 3;
+    }
+    if (A == 2 && B == 2) {
+      return 4;
     }
 
-    return result;
+    // main formula
+    double delta = A - B;
+    if (B > delta) {
+      return (int) (delta - 2 * Math.floor((delta - B) / 3));
+    } else {
+      return (int) (delta - 2 * Math.floor((delta - B) / 4));
+    }
   }
 }
