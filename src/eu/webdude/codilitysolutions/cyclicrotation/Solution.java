@@ -9,11 +9,11 @@ public class Solution {
   }
 
   public static int[] solution(int[] inputArray, int rotations) {
-    int inputLength = inputArray.length;
-    int[] rotated = new int[inputLength];
+    var inputLength = inputArray.length;
+    var rotated = new int[inputLength];
 
-    for (int i = 0; i < inputLength; i++) {
-      int rotatedIndex = (i + rotations) % inputLength;
+    for (var i = 0; i < inputLength; i++) {
+      var rotatedIndex = (i + rotations) % inputLength;
       rotated[rotatedIndex] = inputArray[i];
     }
 
