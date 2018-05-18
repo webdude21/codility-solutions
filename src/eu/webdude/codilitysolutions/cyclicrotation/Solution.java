@@ -5,19 +5,18 @@ import java.util.Arrays;
 public class Solution {
 
   public static void main(String[] args) {
-    Solution solution = new Solution();
-    System.out.println(Arrays.toString(solution.solution(new int[]{3, 8, 9, 7, 6}, 3)));
+    System.out.println(Arrays.toString(Solution.solution(new int[]{3, 8, 9, 7, 6}, 3)));
   }
 
-  public int[] solution(int[] inputArray, int rotations) {
-    int arrayLength = inputArray.length;
-    int[] rotatedArray = new int[arrayLength];
+  public static int[] solution(int[] inputArray, int rotations) {
+    int inputLength = inputArray.length;
+    int[] rotated = new int[inputLength];
 
-    for (int i = 0; i < arrayLength; i++) {
-      int rotatedIndex = (rotations + i) % arrayLength;
-      rotatedArray[rotatedIndex] = inputArray[i];
+    for (int i = 0; i < inputLength; i++) {
+      int rotatedIndex = (i + rotations) % inputLength;
+      rotated[rotatedIndex] = inputArray[i];
     }
 
-    return rotatedArray;
+    return rotated;
   }
 }
